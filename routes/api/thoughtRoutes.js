@@ -56,8 +56,8 @@ router.delete('/:thoughtId', async (req, res) => {
 router.post('/:thoughtId/reactions', async (req, res) => {
     try {
         const newReaction = await Reaction.create(req.body)
-        const thought = await Thought.findOneAndUpdate({ _id: req.params.thoughtId }, { $push: { reactions: newReaction._id } }, { new: true })
-        res.json(newReaction && thought)
+        const updatedThought = await Thought.findOneAndUpdate({ _id: req.params.thoughtId }, { $push: { reactions: newReaction._id } }, { runValidators: true, new: true })
+        res.json(newReaction && updatedThought)
     } catch (err) {
         res.status(500).json(err)
     }
@@ -67,8 +67,8 @@ router.post('/:thoughtId/reactions', async (req, res) => {
 router.delete('/:thoughtId/reactions/:reactionId', async (req, res) => {
     try {
         const deletedReaction = await Reaction.findOneAndDelete({ _id: req.params.reactionId })
-        const thought = await Thought.findOneAndUpdate({ _id: req.params.thoughtId }, { $pull: { reactions: req.params.reactionId } }, { new: true })
-        res.json(deletedReaction && thought)
+        const updatedThought = await Thought.findOneAndUpdate({ _id: req.params.thoughtId }, { $pull: { reactions: req.params.reactionId } }, { new: true })
+        res.json(deletedReaction && updatedThought)
     } catch (err) {
         res.status(500).json(err)
     }
