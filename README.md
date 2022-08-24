@@ -20,9 +20,19 @@ This application provides a social network API that allows users to share their 
 
 ## Preview 📸
 
-User Routes:
+User Routes Demo:
 
-Thought Routes:
+
+https://user-images.githubusercontent.com/100378792/186495191-9d2b4a7a-1ec1-4720-9fcc-8d91a60cfbf5.mov
+
+
+
+Thought Routes Demo:
+
+
+https://user-images.githubusercontent.com/100378792/186495254-6fcd9781-3e2b-4cb6-b0aa-f93f2ae5400e.mov
+
+
 
 ## Installation 📥
 
