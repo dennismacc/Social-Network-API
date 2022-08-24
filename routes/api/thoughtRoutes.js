@@ -35,7 +35,7 @@ router.get('/:thoughtId', async (req, res) => {
 //TODO: ROUTE TO UPDATE A THOUGHT
 router.put('/', async (req, res) => {
     try {
-        const updatedThought = await Thought.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true })
+        const updatedThought = await Thought.findOneAndUpdate({ _id: req.body.thoughtId }, {$set: req.body}, { new: true })
         res.json(updatedThought)
     } catch (err) {
         res.status(500).json(err)
