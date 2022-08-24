@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
 //TODO - ROUTE THAT GETS A SINGLE USER BASED ON USER ID
 router.get('/:userId', async (req, res) => {
     try {
-        const user = await User.findByPk(req.params.userId);
+        const user = await User.findOne({ _id: req.params.userId });
         res.json(user);
     } catch (err) {
         res.status(500).json(err);
