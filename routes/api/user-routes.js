@@ -57,8 +57,9 @@ router.put('/:userId/friends/:friendId', async (req, res) => {
     try {
         const addFriend = await User.findOneAndUpdate(
             { _id: req.params.userId },
-            { $push: { friends: req.params.friendId } },
-        ); res.json(addFriend);
+            {$addToSet: {friends: req.params.friendId}},
+            {runValidators: true, new: true});
+        res.json(addFriend);
     } catch (err) {
         res.status(500).json(err);
     }
@@ -70,12 +71,9 @@ router.delete('/:userId/friends/:friendId', async (req, res) => {
         const deleteFriend = await User.findOneAndUpdate(
             { _id: req.params.userId },
             { $pull: { friends: req.params.friendId } },
+            { runValidators: true, new: true }
         );
-        const updateFriend = await User.findByIdAndUpdate(
-            { _id: req.params.friendId },
-            { $pull: { friends: req.params.userId } },
-        );
-        res.json(deleteFriend && updateFriend);
+        res.json(deleteFriend);
     } catch (err) {
         res.status(500).json(err);
     }
