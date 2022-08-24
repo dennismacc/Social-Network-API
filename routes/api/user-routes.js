@@ -5,7 +5,7 @@ const { User } = require("../../models")
 //TODO - ROUTE THAT GETS ALL THE USERS, include friends?
 router.get('/', async (req, res) => {
     try {
-        const userData = await User.findAll({});
+        const userData = await User.find({});
         res.json(userData);
     } catch (err) {
         res.status(500).json(err);
